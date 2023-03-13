@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --purple: #757197;
+    --blue: #B6D1D0;
+    --yellow: #F0ECD5;
+    --skin: #CCCDB2;
+    --brown: #A39089;
+
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: var(--purple);
+}
+
+.turn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+.turn-container>p {
+    color: var(--purple);
+    font-weight: normal;
+    font-size: 20;
+}
+
+#player-turn {
+    font-weight: bold;
+    font-size: 30;
+}
+
+#board {
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.cell {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--purple);
+    background-color: white;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition-duration: 100ms;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10%;
+}
+
+.hover:hover {
+    cursor: pointer;
+    background-color: var(--purple);
+}
+
+.playerX {
+    width: 100%;
+    height: 100%;
+    mask: url('images/x.svg') no-repeat 100% 100%;
+    mask-size: contain;
+    -webkit-mask: url('images/x.svg') no-repeat 100% 100%;
+    -webkit-mask-size: contain;
+    background-color: var(--purple);
+}
+
+.playerCircle {
+    width: 100%;
+    height: 100%;
+    mask: url('images/circle.svg') no-repeat 100% 100%;
+    mask-size: contain;
+    -webkit-mask: url('images/circle.svg') no-repeat 100% 100%;
+    -webkit-mask-size: contain;
+    background-color: var(--purple);
+}
+
+.score-container {
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    text-align: center;
+}
+
+.score-container > p {
+    margin-top: 10px;
+    font-size: 20;
+    color: var(--purple)
+}
+
+.score-container > .score {
+    font-weight: bold;
+    font-size: 30;
+}
