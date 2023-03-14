@@ -65,9 +65,10 @@ function checkWin() {
             const score = document.getElementById('score-tie')
             score.innerText = tie_score
         }
-
-        // reset game
-        reset()        
+        
+        // popup modal
+        const modal = document.getElementById('restart-modal')
+        modal.style.visibility = "visible"        
     }
 }
 
@@ -103,6 +104,10 @@ function updateTurn() {
 }
 
 function reset() {
+    // popup modal
+    const modal = document.getElementById('restart-modal')
+    modal.style.visibility = "hidden"
+
     // reset board state
     board_state = []
 
