@@ -70,7 +70,7 @@ function checkWin() {
 
 function checkWinningCondition() {
     // check if any of the win conditions is satisfied
-    let winner = null
+    let winner = false
     win_conditions.forEach(combo => {
         if (board_state[combo[0]] && board_state[combo[1]] && board_state[combo[2]]) {
             if (board_state[combo[0]] === board_state[combo[1]] && board_state[combo[1]] === board_state[combo[2]]) {
@@ -79,16 +79,12 @@ function checkWinningCondition() {
         }
     })
 
-    if (winner) {
-        return winner
-    }
-
     // game is tied if no moves left and no one won
-    if (turn_counter === 10) {
-        return 3
+    if (turn_counter === 10 && !winner) {
+        winner = 3
     }
 
-    return false 
+    return winner
 }
 
 function updateTurn() {
