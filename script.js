@@ -8,6 +8,17 @@ let player1_score = 0
 let player2_score = 0
 let tie_score = 0
 
+const win_conditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+]
+
 function cellOnClick(id) {
     const button = document.getElementById(id)
     const icon_container = document.createElement('div')
@@ -31,6 +42,11 @@ function cellOnClick(id) {
     turn_counter += 1
     updateTurn()
 
+
+    checkWin()
+}
+
+function checkWin() {
     const player_win = checkWinningCondition()
     if (player_win) {
         if (player_win === 1) {
@@ -53,36 +69,18 @@ function cellOnClick(id) {
 }
 
 function checkWinningCondition() {
-    // per row checking
-    for (i = 0; i < 9; i += 3) {
-        if (board_state[i] && board_state[i + 1] && board_state[i + 2]) {
-            if (board_state[i] === board_state[i + 1] && board_state[i + 1] === board_state[i + 2]) {
-                return board_state[i]
+    // check if any of the win conditions is satisfied
+    let winner = null
+    win_conditions.forEach(combo => {
+        if (board_state[combo[0]] && board_state[combo[1]] && board_state[combo[2]]) {
+            if (board_state[combo[0]] === board_state[combo[1]] && board_state[combo[1]] === board_state[combo[2]]) {
+                winner =  board_state[combo[0]]
             }
         }
-    }
+    })
 
-    // per column checking
-    for (i = 0; i < 3; i++) {
-        if (board_state[i] && board_state[i + 3] && board_state[i + 6]) {
-            if (board_state[i] === board_state[i + 3] && board_state[i + 3] === board_state[i + 6]) {
-                return board_state[i]
-            }
-        }
-    }
-
-    // diagonal checking from left to right
-    if (board_state[0] && board_state[4] && board_state[8]) {
-        if (board_state[0] === board_state[4] && board_state[4] === board_state[8]) {
-            return board_state[0]
-        }
-    }
-
-    // diagonal checking from right to left
-    if (board_state[2] && board_state[4] && board_state[6]) {
-        if (board_state[2] === board_state[4] && board_state[4] === board_state[6]) {
-            return board_state[2]
-        }
+    if (winner) {
+        return winner
     }
 
     // game is tied if no moves left and no one won
@@ -90,7 +88,7 @@ function checkWinningCondition() {
         return 3
     }
 
-    return false
+    return false 
 }
 
 function updateTurn() {
@@ -101,7 +99,7 @@ function updateTurn() {
     }
 
     else {
-        turn_text.innerText = "Player 2 (O)"
+        turn_text.innerText = "CPU (O)"
     }
 }
 
