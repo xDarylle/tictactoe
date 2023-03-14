@@ -65,6 +65,9 @@ function checkWin() {
             const score = document.getElementById('score-tie')
             score.innerText = tie_score
         }
+
+        // reset game
+        reset()        
     }
 }
 
@@ -99,9 +102,27 @@ function updateTurn() {
     }
 }
 
+function reset() {
+    // reset board state
+    board_state = []
+
+    // reset turn counter
+    turn_counter = 1
+
+    // update turn
+    updateTurn()
+
+    // reset the board
+    initializeBoard()
+}
+
 function initializeBoard() {
     const board = document.getElementById('board')
 
+    // empty the board
+    board.replaceChildren()
+
+    // add cells to board 
     for (i = 0; i < 9; i++) {
         const button = document.createElement('button')
         button.id = 'cell-' + i

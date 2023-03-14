@@ -1,25 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root {
-    --purple: #757197;
-    --blue: #B6D1D0;
-    --yellow: #F0ECD5;
-    --skin: #CCCDB2;
-    --brown: #A39089;
+    --background: #0A2647;
+    --foreground-dark: #144272;
+    --foreground-medium: #205295;
+    --foreground: #2C74B3;
+
 
     font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: var(--blue);
+    background-color: var(--background);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 h1 {
-    color: var(--purple);
+    color: var(--foreground);
 }
 
 .turn-container {
@@ -27,6 +28,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
+    margin-top: 20px;
 }
 
 p {
@@ -34,7 +36,7 @@ p {
 }
 
 .turn-container>p {
-    color: var(--purple);
+    color: var(--foreground);
     font-weight: normal;
     font-size: 20;
 }
@@ -42,13 +44,14 @@ p {
 #player-turn {
     font-weight: bold;
     font-size: 30;
+    color: var(--foreground);
 }
 
 #board {
-    width: 500px;
-    height: 500px;
-    background-color: white;
-    margin-top: 10px;
+    width: 30vw;
+    height: 30vw;
+    background-color: transparent;
+    margin-top: 50px;
 }
 
 .grid {
@@ -59,9 +62,8 @@ p {
 
 .cell {
     border-style: solid;
-    border-width: 1px;
-    border-color: var(--purple);
-    background-color: white;
+    border-color: var(--foreground-dark);
+    background-color: transparent;
     width: 100%;
     height: 100%;
 
@@ -76,9 +78,40 @@ p {
     padding: 10%;
 }
 
-.hover:hover {
-    cursor: pointer;
-    background-color: var(--purple);
+#cell-0 {
+    border-top: 0;
+    border-left: 0;
+}
+
+#cell-1 {
+    border-top: 0;
+}
+
+#cell-2 {
+    border-top: 0;
+    border-right: 0;
+}
+
+#cell-3 {
+    border-left: 0;
+}
+
+#cell-5 {
+    border-right: 0;
+}
+
+#cell-6 {
+    border-bottom: 0;
+    border-left: 0;
+}
+
+#cell-7 {
+    border-bottom: 0;
+}
+
+#cell-8 {
+    border-bottom: 0;
+    border-right: 0;
 }
 
 .playerX {
@@ -88,34 +121,132 @@ p {
     mask-size: contain;
     -webkit-mask: url('images/x.svg') no-repeat 100% 100%;
     -webkit-mask-size: contain;
-    background-color: var(--purple);
+    background-color: var(--foreground);
+    
+    animation-name: reveal;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .playerCircle {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     mask: url('images/circle.svg') no-repeat 100% 100%;
     mask-size: contain;
     -webkit-mask: url('images/circle.svg') no-repeat 100% 100%;
     -webkit-mask-size: contain;
-    background-color: var(--purple);
+    background-color: var(--foreground);
+
+    animation-name: reveal;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .score-container {
-    width: 500px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     text-align: center;
 }
 
-.score-container > p {
-    margin-top: 10px;
+.score-container>p {
+    margin-top: 20px;
     font-size: 20;
-    color: var(--purple)
+    color: var(--foreground)
 }
 
-.score-container > .score {
+.score-container>.score {
     font-weight: bold;
     font-size: 30;
+}
+
+@keyframes reveal {
+    0% {
+        transform: scale(0);
+    }
+
+    75% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 600px) {
+    #board {
+        width: 90vw;
+        height: 90vw;
+        margin-top: 10%;
+    }
+
+    .score-container {
+        width: 80vw;
+    }
+
+    .cell {
+        border-width: 10px;
+    }
+
+    .score-container>p {
+        margin-top: 40%;
+        font-size: 40;
+        color: var(--foreground)
+    }
+
+    .score-container>.score {
+        margin-top: 10%;
+        font-weight: bold;
+        font-size: 90;
+    }
+
+    .turn-container>p {
+        font-size: 40;
+    }
+
+    #player-turn {
+        font-size: 100;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #board {
+        width: 30vw;
+        height: 30vw;
+        margin-top: 50px;
+    }
+
+    .score-container {
+        width: 30vw
+    }
+
+    .cell {
+        border-width: 2px;
+    }
+
+    .score-container>p {
+        margin-top: 20px;
+        font-size: 20;
+        color: var(--foreground)
+    }
+
+    .score-container>.score {
+        font-weight: bold;
+        font-size: 30;
+    }
+
+    .turn-container>p {
+        font-size: 20;
+    }
+
+    #player-turn {
+        font-size: 30;
+    }
+
+    .hover:hover {
+        background-color: var(--foreground-dark);
+    }
 }
