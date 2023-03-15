@@ -3,6 +3,7 @@
 :root {
     --background: #0A2647;
     --foreground-dark: #144272;
+    --foreground-dark-opacity: #144172ee;
     --foreground-medium: #205295;
     --foreground: #2C74B3;
 
@@ -115,6 +116,12 @@ p {
     border-right: 0;
 }
 
+.win {
+    animation-name: winner;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+}
+
 .playerX {
     width: 100%;
     height: 100%;
@@ -123,7 +130,7 @@ p {
     -webkit-mask: url('images/x.svg') no-repeat 100% 100%;
     -webkit-mask-size: contain;
     background-color: var(--foreground);
-    
+
     animation-name: reveal;
     animation-duration: 300ms;
     animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
@@ -161,7 +168,7 @@ p {
     font-size: 30;
 }
 
-.modal {
+.modal-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,7 +179,78 @@ p {
     width: 100%;
     height: 100%;
     z-index: 10;
+}
+
+#restart-container {
     visibility: hidden;
+    transition-delay: 1s;
+}
+
+#restart-modal {
+    transition-duration: 0ms;
+    transition-delay: 0ms;
+}
+
+.modal {
+    width: 25%;
+    aspect-ratio: 1/1;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 1%;
+
+    background-color: var(--foreground-dark);
+    border-radius: 5px;
+}
+
+.modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content>p {
+    font-size: 25;
+    color: rgba(255, 255, 255, 0.829);
+}
+
+#winner {
+    font-size: 40;
+    font-weight: bold;
+    color: white;
+    margin-top: 7%;
+}
+
+#restart-btn {
+    margin-bottom: 3%;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: var(--background);
+    border: none;
+    color: white;
+    font-size: 20;
+    border-radius: 5px;
+}
+
+@keyframes winner {
+    0% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes reveal {

@@ -14,8 +14,14 @@
         <p id="player-turn"></p>
     </div>
 
-    <div id="restart-modal" class="modal">
-        <button id="restart-btn" onclick="reset()">Play Again</button>
+    <div id="restart-container" class="modal-container">
+        <div id="restart-modal" class="modal">
+            <div class="modal-content">
+                <p>Winner</p>
+                <p id="winner">Player</p>
+            </div>
+            <button id="restart-btn" onclick="reset()">Play Again</button>
+        </div>
     </div>
 
     <div class="grid" id="board"></div>
