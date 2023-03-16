@@ -22,18 +22,39 @@ const win_conditions = [
 let winning_cells = []
 
 function cellOnClick(id) {
-    const button = document.getElementById(id)
-    const icon_container = document.createElement('div')
     const index = parseInt(id.split('-')[1])
+    board_state[index] = 1
+    placeMove(id, 1)
 
-    if (turn_counter % 2 !== 0) {
+    let player_win = checkWinningCondition(board_state)
+    playerWin(player_win)
+
+    disableCells(true)
+
+    // cpu's turn
+    if (!player_win) {
+        setTimeout(() => {
+            const cpu_move = getCPUMove()
+            board_state[cpu_move] = 2
+            placeMove(`cell-${cpu_move}`, 2)
+            player_win = checkWinningCondition(board_state)
+            playerWin(player_win)
+
+            disableCells(false)
+        }, 1000)
+    }
+}
+
+function placeMove(cell_id, player) {
+    const button = document.getElementById(cell_id)
+    const icon_container = document.createElement('div')
+
+    if (player === 1) {
         icon_container.classList.add('playerX')
-        board_state[index] = 1
     }
 
-    else {
+    if (player === 2) {
         icon_container.classList.add('playerCircle')
-        board_state[index] = 2
     }
 
     button.appendChild(icon_container)
@@ -42,14 +63,62 @@ function cellOnClick(id) {
 
     // next turn
     turn_counter += 1
+
+    // update turn
     updateTurn()
-
-
-    checkWin()
 }
 
-function checkWin() {
-    const player_win = checkWinningCondition()
+function getCPUMove() {
+    const empty_cells = []
+    const cpu_possible_moves = []
+    const player_possible_winning_moves = []
+
+    // find all available moves
+    board_state.forEach((cell, index) => {
+        if (cell === null) empty_cells.push(index)
+    })
+
+    // find winning moves for player 1
+    empty_cells.forEach(index => {
+        const new_state = board_state.slice()
+        new_state[index] = 1
+
+        const player_win = checkWinningCondition(new_state)
+        if (player_win) {
+            player_possible_winning_moves.push(index)
+        }
+    })
+
+    // find winning moves for cpu
+    empty_cells.forEach(index => {
+        const new_state = board_state.slice()
+        new_state[index] = 2
+
+        const player_win = checkWinningCondition(new_state)
+        if (player_win) {
+            cpu_possible_moves.push(index)
+        }
+    })
+
+    // choose random available move
+    let cpu_move = empty_cells[Math.floor(Math.random() * empty_cells.length)]
+
+    // if cpu has no possible winning moves check and if player has possible winning move
+    // set player's winning move as cpu's move 
+    if (cpu_possible_moves <= 0 && player_possible_winning_moves.length) {
+        cpu_move = player_possible_winning_moves[Math.floor(Math.random() * player_possible_winning_moves.length)]
+    } 
+    
+    // choose any of cpu's possible winning moves,
+    if(cpu_possible_moves.length > 0){
+        cpu_move = cpu_possible_moves[Math.floor(Math.random() * cpu_possible_moves.length)]
+    }
+
+    return cpu_move
+}
+
+
+function playerWin(player_win) {
     if (player_win) {
         const winner = document.getElementById('winner')
         if (player_win === 1) {
@@ -74,7 +143,7 @@ function checkWin() {
         }
 
         //disable cells 
-        disableCells()
+        disableCells(true)
 
         //animate winning cells
         winning_cells.forEach(index => {
@@ -94,13 +163,13 @@ function checkWin() {
     }
 }
 
-function checkWinningCondition() {
+function checkWinningCondition(board) {
     // check if any of the win conditions is satisfied
     let winner = false
     win_conditions.forEach(combo => {
-        if (board_state[combo[0]] && board_state[combo[1]] && board_state[combo[2]]) {
-            if (board_state[combo[0]] === board_state[combo[1]] && board_state[combo[1]] === board_state[combo[2]]) {
-                winner = board_state[combo[0]]
+        if (board[combo[0]] && board[combo[1]] && board[combo[2]]) {
+            if (board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2]]) {
+                winner = board[combo[0]]
                 winning_cells = [combo[0], combo[1], combo[2]]
             }
         }
@@ -115,10 +184,12 @@ function checkWinningCondition() {
     return winner
 }
 
-function disableCells() {
+function disableCells(disabled) {
     for (i = 0; i < 9; i++) {
-        const button = document.getElementById(`cell-${i}`)
-        button.disabled = true
+        if (board_state[i] === null) {
+            const button = document.getElementById(`cell-${i}`)
+            button.disabled = disabled
+        }
     }
 }
 
