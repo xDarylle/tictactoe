@@ -303,6 +303,25 @@ p {
     #player-turn {
         font-size: 100;
     }
+
+    .modal {
+        width: 90%;
+    }
+
+    .modal-content>p {
+        font-size: 80;
+    }
+
+    #winner {
+        font-size: 150;
+    }
+
+    #restart-btn {
+        padding-top:5%;
+        padding-bottom: 5%;
+        font-size: 50;
+        border-radius: 5px;
+    }
 }
 
 @media only screen and (min-width: 992px) {
@@ -341,5 +360,24 @@ p {
 
     .hover:hover {
         background-color: var(--foreground-dark);
+    }
+
+    .modal {
+        width: 25%;
+    }
+
+    .modal-content>p {
+        font-size: 25;
+    }
+
+    #winner {
+        font-size: 40;
+    }
+
+    #restart-btn {
+        padding-top: 2%;
+        padding-bottom: 2%;
+        font-size: 20;
+        border-radius: 5px;
     }
 }
