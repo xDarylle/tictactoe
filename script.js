@@ -1,3 +1,4 @@
+import { questions } from "./questions.js"
 // player turn counter
 let turn_counter = 1
 
@@ -39,10 +40,98 @@ function cellOnClick(id) {
             placeMove(`cell-${cpu_move}`, 2)
             player_win = checkWinningCondition(board_state)
             playerWin(player_win)
-
-            disableCells(false)
+            
+            if(!player_win) {
+                setTimeout(() => {
+                    openQuestion()
+                    disableCells(false)
+                }, 1200)
+            }
         }, 1000)
     }
+}
+
+function getRandomQuestion() {
+    return questions[Math.floor(Math.random() * questions.length)]
+}
+
+function openQuestion() {
+    const question = getRandomQuestion()
+
+    const choices_container = document.getElementById('answer-container')
+    choices_container.replaceChildren()
+
+    for (var i = 0; i < question.choices.length; i++) {
+        const button = document.createElement('button')
+        const choice = question.choices[i]
+        button.id = 'choice-' + i
+        button.classList.add('answer')
+        button.classList.add('answer-hover')
+        button.innerText = choice
+        button.onclick = function () { clickAnswer(question.answer, choice, this.id) }
+
+        choices_container.appendChild(button)
+    }
+
+    const question_container = document.getElementById('question')
+    question_container.innerText = question.question
+
+    const modal = document.getElementById('question-container')
+    modal.style.visibility = "visible"
+
+    const question_modal = document.getElementById('question-modal')
+    question_modal.style.animationName = "modal-reveal"
+
+    setTimeout(() => {
+        question_modal.style.transform = "scale(1)"
+    }, 200)
+}
+
+function clickAnswer(answer, choice, id) {
+    const button = document.getElementById(id)
+    button.classList.remove('answer-hover')
+
+    let isCorrect = (answer === choice)
+
+    if (isCorrect) {
+        button.classList.add('correct')
+    } else {
+        button.classList.add('incorrect')
+    }
+
+    setTimeout(() => {
+        const question_modal = document.getElementById('question-modal')
+        question_modal.style.animationName = "modal-close"
+        question_modal.style.transform = "scale(0)"
+
+        setTimeout(()=> {
+            const modal = document.getElementById('question-container')
+            modal.style.visibility = "hidden"
+        }, 250)
+
+        if(!isCorrect) {
+            disableCells(true)
+
+            turn_counter += 1
+            updateTurn()
+
+            setTimeout(() => {
+                const cpu_move = getCPUMove()
+                board_state[cpu_move] = 2
+                placeMove(`cell-${cpu_move}`, 2)
+
+                let player_win = checkWinningCondition(board_state)
+                playerWin(player_win)
+
+                if(!player_win) {
+                    setTimeout(() => {
+                        openQuestion()
+                        disableCells(false)
+                    }, 1200)
+                }
+            }, 1200)
+        }
+    }, 300)
 }
 
 function placeMove(cell_id, player) {
@@ -107,10 +196,10 @@ function getCPUMove() {
     // set player's winning move as cpu's move 
     if (cpu_possible_moves <= 0 && player_possible_winning_moves.length) {
         cpu_move = player_possible_winning_moves[Math.floor(Math.random() * player_possible_winning_moves.length)]
-    } 
-    
+    }
+
     // choose any of cpu's possible winning moves,
-    if(cpu_possible_moves.length > 0){
+    if (cpu_possible_moves.length > 0) {
         cpu_move = cpu_possible_moves[Math.floor(Math.random() * cpu_possible_moves.length)]
     }
 
@@ -185,7 +274,7 @@ function checkWinningCondition(board) {
 }
 
 function disableCells(disabled) {
-    for (i = 0; i < 9; i++) {
+    for (var i = 0; i < 9; i++) {
         if (board_state[i] === null) {
             const button = document.getElementById(`cell-${i}`)
             button.disabled = disabled
@@ -222,6 +311,9 @@ function reset() {
 
     // reset the board
     initializeBoard()
+
+    // open question modal
+    openQuestion()
 }
 
 function initializeBoard() {
@@ -231,7 +323,7 @@ function initializeBoard() {
     board.replaceChildren()
 
     // add cells to board 
-    for (i = 0; i < 9; i++) {
+    for (var i = 0; i < 9; i++) {
         const button = document.createElement('button')
         button.id = 'cell-' + i
         button.classList.add('cell')
@@ -242,10 +334,15 @@ function initializeBoard() {
         //initialize board state
         board_state.push(null)
     }
+
+    const reset_button = document.getElementById('restart-btn')
+    reset_button.onclick = function () { reset() }
 }
 
 window.onload = function () {
     initializeBoard()
     updateTurn()
+
+    openQuestion()
 }
 

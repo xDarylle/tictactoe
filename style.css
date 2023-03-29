@@ -6,7 +6,8 @@
     --foreground-dark-opacity: #144172ee;
     --foreground-medium: #205295;
     --foreground: #2C74B3;
-
+    --green: rgb(45, 126, 85);
+    --red: rgb(163, 71, 71);
 
     font-family: 'Inter', sans-serif;
 }
@@ -239,6 +240,63 @@ p {
     border-radius: 5px;
 }
 
+#question-modal {
+    width: 40%;
+    padding: 2% 2% 2% 2%;
+    color: white;
+
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+#title {
+    font-weight: bold;
+    font-size: 30;
+}
+
+#question {
+    font-weight: normal;
+    font-size: 20;
+    margin-top: 2%;
+    text-align:  center;
+}
+
+.answer {
+    width: 100%;
+    font-size: 15;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: var(--foreground);
+
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+    transition: all;
+    transition-duration: 100ms;
+}
+
+.answer-hover {
+    background-color: var(--foreground-medium);
+    cursor: pointer;
+}
+
+.correct {
+    background-color: var(--green);
+}
+
+.incorrect {
+    background-color: var(--red);
+}
+
+#answer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    row-gap: 15px;
+}
+
 @keyframes winner {
     0% {
         transform: scale(1);
@@ -264,6 +322,26 @@ p {
 
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes modal-reveal {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-close {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
     }
 }
 

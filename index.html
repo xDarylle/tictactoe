@@ -1,10 +1,9 @@
-
 <html>
 
 <head>
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -20,9 +19,22 @@
                 <p>Winner</p>
                 <p id="winner">Player</p>
             </div>
-            <button id="restart-btn" onclick="reset()">Play Again</button>
+            <button id="restart-btn">Play Again</button>
         </div>
     </div>
+
+    <div id="question-container" class="modal-container">
+        <div id="question-modal" class="modal">
+            <p id="title">Question</p>
+            <p id="question">Tic-tac-toe (American English), noughts and crosses (Commonwealth English), or Xs and Os
+                (Canadian or Irish English) is a paper-and-pencil game for two players who take turns marking the spaces
+                in a three-by-three grid with X or O.</p>
+            <div id="answer-container">
+                
+            </div>
+        </div>
+    </div>
+
 
     <div class="grid" id="board"></div>
 
