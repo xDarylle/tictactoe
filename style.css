@@ -328,6 +328,22 @@ p {
     margin-bottom: 30px;
 }
 
+#how-to-play {
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#how-to-play > p {
+    font-size: 22;
+    text-align: center;
+    font-weight: bold;
+}
+
+ol li {
+    margin: 10px;
+}
+
 @keyframes winner {
     0% {
         transform: scale(1);
@@ -434,10 +450,12 @@ p {
 
     #menu-title {
         font-size: 100;
+        margin-bottom: 10%;
     }
 
     #menu-modal > button {
         width: 90%;
+        margin-top: 10%;
         font-size: 60;
     }
 
@@ -457,6 +475,15 @@ p {
     .answer {
         padding-top: 5%;
         padding-bottom: 5%;
+        font-size: 40;
+    }
+
+    #how-to-play > p {
+        font-size: 50;
+    }
+    
+    ol li {
+        margin-bottom: 15px;
         font-size: 40;
     }
 }
@@ -550,4 +577,13 @@ p {
         padding-bottom: 3%;
         font-size: 15;
     }
+
+    #how-to-play > p {
+        font-size: 22;
+    }
+    
+    ol li {
+        font-size: 20;
+    }
+
 }
