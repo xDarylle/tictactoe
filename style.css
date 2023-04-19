@@ -311,13 +311,13 @@ p {
 #menu-modal > button {
     margin-bottom: 30px;
     width: 80%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 20;
     background-color: var(--foreground);
     border: none;
     border-radius: 5px;
     color: white;
-    font-size: 15;
 }
 
 #menu-title {
@@ -437,7 +437,6 @@ p {
     }
 
     #menu-modal > button {
-        height: 15%;
         width: 90%;
         font-size: 60;
     }
@@ -519,15 +518,19 @@ p {
         border-radius: 5px;
     }
 
+    #menu-modal {
+        width: 40%;
+    }
+
     #menu-title {
-        font-size: 30;
+        font-size: 40;
     }
 
     #menu-modal > button {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         width: 80%;
-        font-size: 15;
+        font-size: 20;
     }
 
     #question-modal {
