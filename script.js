@@ -18,6 +18,8 @@ const win_conditions = [
 
 let winning_cells = []
 
+let selectedQuestion = 0
+
 function cellOnClick(id) {
     const index = parseInt(id.split('-')[1])
     board_state[index] = 1
@@ -48,7 +50,15 @@ function cellOnClick(id) {
 }
 
 function getRandomQuestion() {
-    return questions[Math.floor(Math.random() * questions.length)]
+    const selected = questions[Math.floor(Math.random() * questions.length)]
+    
+    // prevent getting the same question in a row
+    if (selected.id === selectedQuestion) {
+        return getRandomQuestion()
+    }
+
+    selectedQuestion = selected.id
+    return selected
 }
 
 function openQuestion() {

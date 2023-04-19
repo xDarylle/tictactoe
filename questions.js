@@ -1,5 +1,6 @@
 const questions = [
     {
+        id: 1,
         question: "Tic-tac-toe is played on a grid with how many squares?",
         answer: "9",
         choices: [
@@ -11,6 +12,7 @@ const questions = [
     },
 
     {
+        id: 2,
         question: "Players win in tic-tac-toe when they succeed in placing three of their marks in a row in what manner?",
         answer: "any of the above",
         choices: [
@@ -22,6 +24,7 @@ const questions = [
     },
 
     {
+        id: 3,
         question: "If you live in England, what might you call tic-tac-toe?",
         answer: "noughts and crosses",
         choices: [
@@ -33,6 +36,7 @@ const questions = [
     },
 
     {
+        id: 4,
         question: "How many players are needed to play tic-tac-toe?",
         answer: "2",
         choices: [
@@ -44,6 +48,7 @@ const questions = [
     },
 
     {
+        id: 5,
         question: "What was the name of the early varation of tic-tac-toe played in the Roman Empire?",
         answer: "terni lapilli",
         choices: [
@@ -55,6 +60,7 @@ const questions = [
     },
 
     {
+        id: 6,
         question: "Year that Sandy Douglas developed OXO (or Noughts and Crosses) for the EDSAC computer",
         answer: "1952",
         choices: [
@@ -66,6 +72,7 @@ const questions = [
     },
 
     {
+        id: 7,
         question: "Studies shows that when X makes the first move, the game outcomes is/are: ",
         answer: "All of the above",
         choices: [
