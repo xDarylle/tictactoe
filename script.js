@@ -5,10 +5,6 @@ let turn_counter = 1
 // board state 
 let board_state = []
 
-let player1_score = 0
-let player2_score = 0
-let tie_score = 0
-
 const win_conditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -211,23 +207,14 @@ function playerWin(player_win) {
     if (player_win) {
         const winner = document.getElementById('winner')
         if (player_win === 1) {
-            player1_score++
-            const score = document.getElementById('score-player-1')
-            score.innerText = player1_score
             winner.innerText = "PLAYER 1"
         }
 
         if (player_win === 2) {
-            player2_score++
-            const score = document.getElementById('score-player-2')
-            score.innerText = player2_score
             winner.innerText = "CPU"
         }
 
         if (player_win === 3) {
-            tie_score++
-            const score = document.getElementById('score-tie')
-            score.innerText = tie_score
             winner.innerText = "TIE"
         }
 
