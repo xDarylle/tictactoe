@@ -7,7 +7,6 @@
 </head>
 
 <body>
-    <!-- <h1>TIC TAC TOE</h1> -->
     <div class="turn-container">
         <p>Turn</p>
         <p id="player-turn"></p>
@@ -20,6 +19,7 @@
                 <p id="winner">Player</p>
             </div>
             <button id="restart-btn">Play Again</button>
+            <button id="exit-btn">Exit</button>
         </div>
     </div>
 
@@ -30,11 +30,17 @@
                 (Canadian or Irish English) is a paper-and-pencil game for two players who take turns marking the spaces
                 in a three-by-three grid with X or O.</p>
             <div id="answer-container">
-                
+
             </div>
         </div>
     </div>
 
+    <div id="menu-container" class="modal-container">
+        <div id="menu-modal" class="modal">
+            <p id="menu-title">TIC TAC TOE</p>
+            <button id="play-btn">PLAY</button>
+        </div>
+    </div>
 
     <div class="grid" id="board"></div>
 

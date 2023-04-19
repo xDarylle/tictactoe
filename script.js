@@ -40,8 +40,8 @@ function cellOnClick(id) {
             placeMove(`cell-${cpu_move}`, 2)
             player_win = checkWinningCondition(board_state)
             playerWin(player_win)
-            
-            if(!player_win) {
+
+            if (!player_win) {
                 setTimeout(() => {
                     openQuestion()
                     disableCells(false)
@@ -104,12 +104,12 @@ function clickAnswer(answer, choice, id) {
         question_modal.style.animationName = "modal-close"
         question_modal.style.transform = "scale(0)"
 
-        setTimeout(()=> {
+        setTimeout(() => {
             const modal = document.getElementById('question-container')
             modal.style.visibility = "hidden"
         }, 250)
 
-        if(!isCorrect) {
+        if (!isCorrect) {
             disableCells(true)
 
             turn_counter += 1
@@ -123,13 +123,13 @@ function clickAnswer(answer, choice, id) {
                 let player_win = checkWinningCondition(board_state)
                 playerWin(player_win)
 
-                if(!player_win) {
+                if (!player_win) {
                     setTimeout(() => {
                         openQuestion()
                         disableCells(false)
-                    }, 1200)
+                    }, 1000)
                 }
-            }, 1200)
+            }, 1000)
         }
     }, 300)
 }
@@ -294,6 +294,20 @@ function updateTurn() {
     }
 }
 
+function closeMenu() {
+    const menu = document.getElementById('menu-container')
+    menu.style.visibility = "hidden"
+
+    openQuestion()
+}
+
+function backMenu() {
+    const menu = document.getElementById('menu-container')
+    menu.style.visibility = "visible"
+
+    reset()
+}
+
 function reset() {
     // popup modal
     const container = document.getElementById('restart-container')
@@ -311,9 +325,6 @@ function reset() {
 
     // reset the board
     initializeBoard()
-
-    // open question modal
-    openQuestion()
 }
 
 function initializeBoard() {
@@ -337,12 +348,16 @@ function initializeBoard() {
 
     const reset_button = document.getElementById('restart-btn')
     reset_button.onclick = function () { reset() }
+
+    const exit_button = document.getElementById('exit-btn')
+    exit_button.onclick = function () { backMenu() }
+
+    const play_button = document.getElementById('play-btn')
+    play_button.onclick = function () { closeMenu() }
 }
 
 window.onload = function () {
     initializeBoard()
     updateTurn()
-
-    openQuestion()
 }
 

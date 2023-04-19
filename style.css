@@ -228,7 +228,7 @@ p {
     margin-top: 7%;
 }
 
-#restart-btn {
+#restart-modal > button{
     margin-bottom: 3%;
     width: 100%;
     padding-top: 2%;
@@ -238,6 +238,10 @@ p {
     color: white;
     font-size: 20;
     border-radius: 5px;
+}
+
+#question-container {
+    visibility: hidden;
 }
 
 #question-modal {
@@ -295,6 +299,26 @@ p {
     width: 100%;
 
     row-gap: 15px;
+}
+
+#menu-modal > button {
+    margin-bottom: 30px;
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--foreground);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15;
+}
+
+#menu-title {
+    margin-top: 50px;
+    font-size: 30;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
 }
 
 @keyframes winner {
