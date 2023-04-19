@@ -12,6 +12,13 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* remove delay on touch */
+a, button, .myelements
+{
+	-ms-touch-action: manipulation;	/* IE10  */
+	touch-action: manipulation;		/* IE11+ */
+}
+
 body {
     background-color: var(--background);
     display: flex;
@@ -371,7 +378,7 @@ p {
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 300px) {
     #board {
         width: 90vw;
         height: 90vw;
@@ -418,11 +425,40 @@ p {
         font-size: 150;
     }
 
-    #restart-btn {
+    #restart-modal > button {
         padding-top:5%;
         padding-bottom: 5%;
         font-size: 50;
         border-radius: 5px;
+    }
+
+    #menu-title {
+        font-size: 100;
+    }
+
+    #menu-modal > button {
+        height: 15%;
+        width: 90%;
+        font-size: 60;
+    }
+
+    #question-modal {
+        width: 90%;
+        height: 70%;
+    }
+
+    #title {
+        font-size: 70;
+    }
+
+    #question {
+        font-size: 60;
+    }
+
+    .answer {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-size: 40;
     }
 }
 
@@ -476,10 +512,39 @@ p {
         font-size: 40;
     }
 
-    #restart-btn {
+    #restart-modal > button {
         padding-top: 2%;
         padding-bottom: 2%;
         font-size: 20;
         border-radius: 5px;
+    }
+
+    #menu-title {
+        font-size: 30;
+    }
+
+    #menu-modal > button {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 80%;
+        font-size: 15;
+    }
+
+    #question-modal {
+        width: 40%;
+    }
+
+    #title {
+        font-size: 30;
+    }
+
+    #question {
+        font-size: 20;
+    }
+
+    .answer {
+        padding-top: 3%;
+        padding-bottom: 3%;
+        font-size: 15;
     }
 }
