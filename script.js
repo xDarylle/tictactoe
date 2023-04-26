@@ -322,6 +322,9 @@ function reset() {
 
     // reset the board
     initializeBoard()
+
+    // open questions
+    openQuestion()
 }
 
 function initializeBoard() {
